@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.1'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.demo'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    //common lang3
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    /*
+    commons-lang3 라이브러리는 Java의 core java.lang 패키지를 확장하여 유용한 기능을 제공하는 Apache Commons 프로젝트의 일부입니다. 이 라이브러리는 Java 개발에 있어 일반적으로 필요한 많은 유틸리티를 제공합니다.
+이 라이브러리의 일부 기능은 다음과 같습니다:
+StringUtils: 이 클래스는 null 안전 문자열 조작을 수행하는 메소드를 제공합니다. isEmpty(), isBlank(), substring(), split(), join() 등과 같은 많은 문자열 조작 메소드가 있습니다.
+NumberUtils, DateUtils: 이 클래스들은 숫자와 날짜에 관련된 다양한 유틸리티 함수를 제공합니다.
+RandomStringUtils: 무작위 문자열 생성을 위한 메소드를 제공합니다.
+ObjectUtils: null 안전 객체 조작 메소드를 제공합니다. defaultIfNull(), min(), max(), equals() 등이 있습니다.
+ReflectionUtils: Java의 reflection API를 더 쉽게 사용할 수 있게 돕는 메소드를 제공합니다.
+SystemUtils: 시스템 속성에 접근하는데 도움이 되는 유틸리티를 제공합니다.
+     */
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+
+
+    //내장 Redis test
+    testImplementation 'it.ozimov:embedded-redis:0.7.3'
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
