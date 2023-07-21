@@ -1,3 +1,8 @@
+[![codecov](https://codecov.io/gh/nomoreFt/webfluxReactiveRedis/branch/master/graph/badge.svg?token=K87PF0W73A)](https://codecov.io/gh/nomoreFt/webfluxReactiveRedis)
+
+
+![Codecov](https://codecov.io/gh/nomoreFt/webfluxReactiveRedis/branch/master/graphs/icicle.svg?token=K87PF0W73A)
+
 # Redis docker image
 
 docker run -p 6379:6379 redis
