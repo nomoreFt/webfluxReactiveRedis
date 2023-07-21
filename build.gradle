@@ -11,12 +11,8 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml {
-            destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
-        }
-        html {
-            destination file("${buildDir}/reports/jacoco/test/html")
-        }
+        xml.required = true
+        html.required = true
     }
 }
 
