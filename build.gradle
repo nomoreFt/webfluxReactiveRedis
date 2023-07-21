@@ -11,8 +11,12 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true // codecov depends on xml format report
-        html.enabled = true
+        xml {
+            destination file("${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+        }
+        html {
+            destination file("${buildDir}/reports/jacoco/test/html")
+        }
     }
 }
 
