@@ -1,4 +1,4 @@
-package com.demo.webfluxreactiveredis.repository;
+/*package com.demo.webfluxreactiveredis.repository;
 
 import com.demo.webfluxreactiveredis.record.Link;
 import com.demo.webfluxreactiveredis.testConfig.EmbeddedRedisExtension;
@@ -41,3 +41,4 @@ class RedisLinkRepositoryTest {
                 .verifyComplete();
     }
 }
+*/

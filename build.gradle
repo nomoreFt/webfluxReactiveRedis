@@ -6,7 +6,14 @@ plugins {
 }
 
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.10"
+}
+
+test {
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
 }
 
 jacocoTestReport {
@@ -14,6 +21,7 @@ jacocoTestReport {
         xml.required = true
         xml.destination file("${buildDir}/jacoco/jacoco.xml")
         html.required = true
+        csv.required = false
     }
 }
 
