@@ -1,3 +1,5 @@
+# Redis docker image
+
 docker run -p 6379:6379 redis
 
 
@@ -5,7 +7,7 @@ springboot3.x 에서부터는 redis starter를 추가 하면 lettuce, redis가 �
 lettuce 설정도 필요 없고 redis server만 설정해주면 된다.
 
 
-
+# Redis UI 검사 툴
 
 https://github.com/RedisInsight/RedisInsight
 
@@ -33,3 +35,43 @@ RedisInsight는 Redis 서버의 성능 모니터링을 제공하며, 실시간 �
 ```
 
 ![](../../../../../var/folders/67/v2hfg63s6hqgn0fzpz3z454r0000gn/T/TemporaryItems/NSIRD_screencaptureui_jHBbDh/스크린샷 2023-07-20 오후 10.49.49.png)
+
+
+
+
+# Redis test
+
+testImplementation 'it.ozimov:embedded-redis:0.7.3'
+
+
+```java
+@TestConfiguration
+public class EmbeddedRedisExtension {
+
+    private RedisServer redisServer;
+    @PostConstruct
+    public void postConstruct() {
+        redisServer = RedisServer.builder()
+                .port(6380)
+                .setting("maxmemory 128M")
+                .build();
+
+        redisServer.start();
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        redisServer.stop();
+    }
+
+}
+
+
+//Redis Embedded Test가 가능
+@SpringBootTest(classes = {EmbeddedRedisExtension.class})
+class RedisLinkRepositoryTest {
+
+}
+
+
+```

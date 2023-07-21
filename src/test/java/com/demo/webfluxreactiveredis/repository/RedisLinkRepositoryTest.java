@@ -23,21 +23,6 @@ class RedisLinkRepositoryTest {
     @Autowired
     private RedisLinkRepository redisLinkRepository;
 
-    @BeforeAll
-    public static void startRedisServer() {
-        redisServer = RedisServer.builder()
-                        .port(6379)
-                        .setting("maxmemory 128M")
-                        .build();
-
-        redisServer.start();
-    }
-
-    @AfterAll
-    public static void stopRedisServer() {
-        redisServer.stop();
-    }
-
 
     @Test
     public void returnsSameLinkAsArgument() {

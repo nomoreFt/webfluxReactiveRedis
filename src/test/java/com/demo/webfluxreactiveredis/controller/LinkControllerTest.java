@@ -1,5 +1,6 @@
 package com.demo.webfluxreactiveredis.controller;
 
+import com.demo.webfluxreactiveredis.record.Link;
 import com.demo.webfluxreactiveredis.service.LinkService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,5 +35,18 @@ public class LinkControllerTest {
                 .expectBody()
                 .jsonPath("$.shortenedLink")
                 .value(val -> Assertions.assertThat(val).isEqualTo("http://localhost:8080/abc123"));
+    }
+
+    @Test
+    public void redirectToOriginalLink() {
+        when(linkService.getOriginalLink("abc123")).thenReturn(Mono.just(new Link("https://spring.io", "abc123")));
+
+        webTestClient.get()
+                .uri("/abc123")
+                .exchange()
+                .expectStatus()
+                .isPermanentRedirect()
+                .expectHeader()
+                .value("Location", val -> Assertions.assertThat(val).isEqualTo("https://spring.io"));
     }
 }

@@ -4,6 +4,7 @@ import com.demo.webfluxreactiveredis.record.Link;
 import com.demo.webfluxreactiveredis.repository.LinkRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -25,5 +26,9 @@ public class LinkService {
                 .map(result -> baseUrl + result.key());
 
 
+    }
+
+    public Mono<Link> getOriginalLink(String key) {
+        return linkRepository.findByKey(key);
     }
 }

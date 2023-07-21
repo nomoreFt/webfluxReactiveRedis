@@ -42,6 +42,8 @@ ReflectionUtils: Java의 reflection API를 더 쉽게 사용할 수 있게 돕�
 SystemUtils: 시스템 속성에 접근하는데 도움이 되는 유틸리티를 제공합니다.
      */
 
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     compileOnly 'org.projectlombok:lombok'
